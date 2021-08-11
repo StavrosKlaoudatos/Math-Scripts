@@ -83,9 +83,8 @@ def compute_inverse_metric_tensor(g=g):
     return g
 
 #Computing Arclength
-
-def calculate_arc_length(g=compute_inverse_metric_tensor(),u=u,v=v,X=X,Y=Y,Z=Z,l=l,a=0,b=1):
-
+#Using Numerical Integration because sympy is not strong enough
+def calculate_arc_length(g=compute_inverse_metric_tensor(), u=u, v=v, X=X, Y=Y, Z=Z, l=l, a=0, b=sp.pi/2,n=10):
     magRsqrt = 0
     for i in range(len(basis)):
         for j in range(len(basis)):
@@ -94,20 +93,25 @@ def calculate_arc_length(g=compute_inverse_metric_tensor(),u=u,v=v,X=X,Y=Y,Z=Z,l
             else:
                 g[i][j] = -g[i][j]
 
-
+    print(g)
 
     for i in range(len(basis)):
         for j in range(len(basis)):
-
-            term = sp.diff(funcs[i],l)*sp.diff(funcs[j],l) * g[i][j]
+            term = sp.diff(funcs[i], l) * sp.diff(funcs[j], l) * g[i][j]
             term = term.subs(u, u_func)
             term = term.subs(v, v_func)
+            term = term.subs(sp.cos(l), sp.cos(l))
+
             magRsqrt += term
 
-    magR = (sp.simplify(sp.sqrt(magRsqrt)))
 
-    arclen = sp.integrate(magR,(l,a,b))
-    print("Arclength from l = {} to  l = {}: ".format(a,b),arclen)
+
+    magR = sp.simplify(sp.sqrt(magRsqrt))
+    print(magR)
+
+    arclen = sp.simplify(((b - a) / n) * (magR.subs(l, a) / 2 + sum([magR.subs(l, a + k * (b - a) / n) for k in range(n)]) + magR.subs(l,b) / 2))
+
+    print("Arclength from l = {} to  l = {}: ".format(a, b), arclen.evalf())
 #Calculating the Christoffel Symbols
 
 def calculate_Christoffel_Symbols(R=R, u=u, v=v, g=compute_inverse_metric_tensor()):
