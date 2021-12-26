@@ -1,25 +1,17 @@
 '''
 Geodesic Calculator by Stavros Klaoudatos
-Made on 10/8/2021- took 2:30 hours
 
-=== THE FILE CURRENTLY IS SETUP TO CALCULATE THE GEODESIC EQUATION FOR A SPHERE WHERE u = t and v = k*l ===
+Made on 10/8/2021- took 2:30 hours
 
 Hello and thanks for downloading/ viewing my code. I have made a simple script to help calculate
 the Notorious Christoffel Symbols and Geodesic Equations.
 
 At the time I was 16 years old. I liked Tensor Calculus and science in General.
-
 Note that this script is not for solving all geodesic problems. It is for solving
-the equations, and calculating the Christoffel Symbols, for curved 2D space.
-
-You need to setup all the parameters in order for this script to help you.
-
-I Suggest you use this for verification. So far, it has calculated corectly many examples, but obviously there limitations.
-
-For example, sympy can raise a NotImplementedError whenever it cannot solve something.
-
+the equations, and calculating the Christoffel Symbols, for curved 2D spaces.
+You need to setup all the parameters in order for this script to help you. So far, it has calculated corectly many examples, but obviously there are limitations.
+For example, sympy can raise a NotImplementedError whenever it cannot solve something. Some hard problems can take upwards of 30 minutes.
 Thanks a lot.
-
 For any inquires or assistance contact me @ stavrosklaoudatos@gmail.com
 
 '''
